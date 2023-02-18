@@ -1,0 +1,20 @@
+{
+  "name": "bluegate",
+  "version": "1.0.0",
+  "description": "BLE to MQTT Gateway using USB dongle",
+  "repository": {
+    "type": "git",
+    "url": "https://edgeware-dev@dev.azure.com/edgeware-dev/edgeware-iot/_git/bluegate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "nact": "7.6.2",
+    "uuid": "9.0.0",
+    "serialport": "10.5.0",
+    "async-mqtt": "2.6.3",
+    "luxon": "3.1.1",
+    "winston": "3.8.2"
+  }
+}
