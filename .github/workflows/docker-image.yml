@@ -16,6 +16,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: edgewaretech/bluegate
+  DOCKER_TARGET_PLATFORM: linux/arm/v8
 
 jobs:
   build-and-push-image:
