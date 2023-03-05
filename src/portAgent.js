@@ -43,10 +43,8 @@ const {
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const firmwareRegex = /Firmware Version: (\d+\.\d+\.\d+)/;
-const VER_2_1_0 = "2.1.0";
-const VER_2_1_3 = "2.1.3";
 const VER_2_2_1 = "2.2.1";
-const VERSIONS = [VER_2_1_0, VER_2_1_3, VER_2_2_1];
+const VERSIONS = [VER_2_2_1];
 const MQTT_BLE_ADV = "ble/adv";
 const MIN_INTERVAL = 30;
 const MAX_INTERVAL = 30;
