@@ -1,0 +1,57 @@
+version: "3.9"
+services:
+  influxdb:
+    image: influxdb:2.6.0
+    container_name: influxdb
+    restart: always
+    environment:
+      COMPOSE_PROJECT_NAME: edgeware
+      INFLUXDB_REPORTING_DISABLED: true
+      INFLUXDB_HTTP_AUTH_ENABLED: true
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: admin
+      DOCKER_INFLUXDB_INIT_PASSWORD: secret1234
+      DOCKER_INFLUXDB_INIT_ORG: edgeware
+      DOCKER_INFLUXDB_INIT_BUCKET: telemetry
+      DOCKER_INFLUXDB_INIT_RETENTION: 365d
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: 6E7KoKKfpVXfQHAIGsvXYqMb0YBiHY4VgrCnK7yjsTyY0nAUffi_jV0xtxrjxKim8ZsRUmEFH9hN3amBGCt3aA==
+    ports:
+      - 8086:8086
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+      - influxdb-etc:/etc/influxdb2
+  emqx:
+    image: emqx/emqx:5.0.13
+    container_name: emqx
+    restart: always
+    ports:
+      - 1883:1883
+      - 8081:8081
+      - 8083:8083
+      - 8084:8084
+      - 18083:18083
+    volumes:
+      - emqx-data:/opt/emqx/data
+      - emqx-etc:/opt/emqx/etc
+      - emqx-log:/opt/emqx/log
+  nodered:
+    image: nodered/node-red:2.2.3
+    container_name: nodered
+    restart: always
+    ports:
+      - 1880:1880
+    volumes:
+      - nodered-data:/data
+  bluegate:
+    container_name: bluegate
+    image: ghcr.io/edgewaretech/bluegate:1.0.0
+    restart: always
+    environment:
+      ALLOWED_ADDRESSES: "*" # or limit to your own sensor mac addresses e.g.: "aabbccddeeff;bbaaccddeeff"
+volumes:
+  influxdb-data:
+  influxdb-etc:
+  emqx-data:
+  emqx-etc:
+  nodered-data:
+  emqx-log:
